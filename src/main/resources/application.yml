@@ -1,0 +1,50 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /api/
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-form-post-size: 200000000
+  # 绑定服务端地址，涉及到服务器安全
+  # address: IP_addr
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      enabled: true
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+    # 不返回null
+    # default-property-inclusion: non_null
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages,i18n/errors,i18n/validator
+    fallback-to-system-locale: false
+  #redis:
+  #  host: localhost
+  #  password:
+  cache:
+    type: simple
+
+mybatis:
+  mapper-locations: classpath*:com/study/elasticsearch/**/mapper/xml/*.xml
+  #config-location: classpath:/mybatis/mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.study.elasticsearch.mapper: debug
+
+

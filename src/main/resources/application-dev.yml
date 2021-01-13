@@ -1,0 +1,55 @@
+#配置数据源
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/elasticsearch?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+    username: root
+    password: plaxyy0708
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      max-wait: 30000
+      query-timeout: 10
+      validation-query: SELECT 1
+      use-global-data-source-stat: true
+      # 数据库断开后自动连接
+      log-abandoned: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      # 开启 StatFilter，默认开启，可通过 'enabled: false' 关闭
+      stat:
+        enabled: true
+        log-slow-sql: true
+        slow-sql-millis: 1000
+      # 开启 Slf4jFilter
+      slf4j:
+        enabled: true
+        data-source-log-enabled: false
+        connection-log-enabled: false
+        statement-log-enabled: false
+        result-set-log-enabled: false
+      # 开启 WallFilter
+      wall:
+        enabled: true
+        log-violation: true
+        throw-exception: false
+        ## WallConfig 配置
+        config:
+          delete-where-none-check: true
+          multiStatementAllow: true
+      # 开启 Web 监控
+      web-stat:
+        enabled: true
+      # 开启 Aop 监控
+      aop-stat:
+        enabled: true
+      # 开启监控页面
+      stat-view-servlet:
+        enabled: true
+      # 配置过滤器，实现sql监控等
+      filters: stat,wall,slf4j
+
+
+elasticsearch:
+  host[0]: 192.168.10.59:9200
+es:
+  data:
+    timeinterval: -100

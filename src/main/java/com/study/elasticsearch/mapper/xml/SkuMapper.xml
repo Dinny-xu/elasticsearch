@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.elasticsearch.mapper.SkuMapper">
+
+    <select id="syncDataList" resultType="com.study.elasticsearch.bean.res.EsQueryRes">
+        SELECT id          AS id,
+               `name`      AS title,
+               `name`      AS content,
+               create_time AS createTime,
+               view_count  AS viewCount
+        FROM tb_sku
+        WHERE create_time <![CDATA[ > ]]> #{time}
+    </select>
+
+</mapper>
